@@ -9,10 +9,28 @@
 script = ExtResource("1_hwhcm")
 enemy_scene = ExtResource("4_rqpit")
 
-[node name="Nature" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="BoxContainer" type="BoxContainer" parent="."]
+clip_contents = true
+layout_direction = 1
+anchors_preset = -1
+offset_right = 1920.0
+offset_bottom = 1252.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 20.0
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Nature" type="TextureRect" parent="BoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
 texture = ExtResource("1_31knf")
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
 
 [node name="Bird" parent="." instance=ExtResource("2_mkugf")]
 position = Vector2(200, 128)
