@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6uyar7b1kef8"]
+
+[ext_resource type="Script" path="res://enemy_bird.gd" id="1_10ps1"]
+[ext_resource type="Texture2D" uid="uid://ehhe82ibker8" path="res://hawk.png" id="1_sue20"]
+[ext_resource type="AudioStream" uid="uid://pngp1ccgejja" path="res://hawkSound.mp3" id="3_u15i6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vlhj8"]
+radius = 144.0
+height = 288.0
+
+[node name="EnemyBird" type="Node2D"]
+script = ExtResource("1_10ps1")
+
+[node name="BirdCatcher" type="Area2D" parent="."]
+
+[node name="EnemyBirdShape" type="CollisionShape2D" parent="BirdCatcher"]
+shape = SubResource("CapsuleShape2D_vlhj8")
+
+[node name="Hawk" type="Sprite2D" parent="."]
+texture = ExtResource("1_sue20")
+flip_h = true
+
+[node name="Squeek" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_u15i6")
+
+[connection signal="body_entered" from="BirdCatcher" to="." method="_on_bird_catcher_body_entered"]

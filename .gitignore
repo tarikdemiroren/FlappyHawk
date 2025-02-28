@@ -1,0 +1,65 @@
+# Godot-specific files
+.import/
+export_presets.cfg
+logs/
+extension_api.json
+*.godotignore
+*.translation
+
+# Build artifacts
+bin/
+*.exe
+*.dll
+*.so
+*.dylib
+*.pck
+*.zip
+*.tar.gz
+*.apk
+*.ipa
+*.wasm
+*.pdb
+
+# Operating system files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Editor & IDE-specific files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.settings/
+*.iml
+
+# Godot Mono / C# files
+.mono/
+*.csproj
+*.sln
+*.csproj.user
+*.pidb
+*.suo
+*.sln.docstates
+*.cache/
+*.mono/
+*.godot/
+
+# Android build files
+.gradle/
+platform/android/java/*/build/
+
+# Web build files
+platform/web/node_modules/
+dist/
+build/
+
+# Python virtual environment
+.venv/
+venv/
+
+# Version control metadata
+.sconsign*.dblite
+.ccls-cache/
+
