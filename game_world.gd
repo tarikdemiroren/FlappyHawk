@@ -5,6 +5,7 @@ var screen_height: int
 var spawn_rate: float = 3.0
 @export var enemy_scene: PackedScene
 @onready var player = $Bird
+@onready var scoreLabel = $ScoreLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,6 +17,8 @@ func _ready() -> void:
 	timer.autostart = true
 	timer.timeout.connect(spawn_enemy)
 	add_child(timer)
+	
+	scoreLabel.text = "No Score!"
 
 func spawn_enemy():
 	var enemy_gap = 660  # Distance between enemies
@@ -59,6 +62,6 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_score_area_entered(body):
-	print("Area entered by:", body.name)
 	if body == player && body.has_method("get_point"):
 		player.get_point()
+		scoreLabel.text = "Score: " + str(player.point)
