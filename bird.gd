@@ -6,6 +6,7 @@ const JUMP_VELOCITY = -400.0
 var shape : Sprite2D
 var collision : CollisionShape2D
 @export var health = 20
+@export var point = 0
 var dieVar : bool
 var tween : Tween
 
@@ -47,3 +48,6 @@ func die():
 	dieVar = true
 	tween = create_tween()
 	tween.tween_property(self, "modulate:a", 0, 1.0).set_delay(0.5)  # Fade out before disappearing
+	
+func get_point():
+	point += 1
