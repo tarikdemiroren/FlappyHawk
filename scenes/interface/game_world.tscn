@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://084rl3mtbu53"]
 
-[ext_resource type="Texture2D" uid="uid://5fvcerjug5r3" path="res://natureBackground.jpg" id="1_31knf"]
-[ext_resource type="Script" path="res://game_world.gd" id="1_hwhcm"]
-[ext_resource type="PackedScene" uid="uid://byeuafk0qui6j" path="res://enemy_tuple.tscn" id="2_0dyg7"]
-[ext_resource type="PackedScene" uid="uid://b02s5t6nlvhwr" path="res://bird.tscn" id="2_mkugf"]
+[ext_resource type="Texture2D" uid="uid://5fvcerjug5r3" path="res://assets/images/natureBackground.jpg" id="1_31knf"]
+[ext_resource type="Script" path="res://scripts/interface/game_world.gd" id="1_hwhcm"]
+[ext_resource type="PackedScene" uid="uid://byeuafk0qui6j" path="res://scenes/enemy/enemy_tuple.tscn" id="2_0dyg7"]
+[ext_resource type="PackedScene" uid="uid://b02s5t6nlvhwr" path="res://scenes/player/bird.tscn" id="2_mkugf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_csxbs"]
 line_spacing = 4.0

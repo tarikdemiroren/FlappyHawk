@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8gwcdfp11n5o"
-path="res://.godot/imported/birb.png-fa09f004c625d832d2119915e03e420b.ctex"
+uid="uid://5fvcerjug5r3"
+path="res://.godot/imported/natureBackground.jpg-cc90e6213457928ae93e206f7e597281.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://birb.png"
-dest_files=["res://.godot/imported/birb.png-fa09f004c625d832d2119915e03e420b.ctex"]
+source_file="res://assets/images/natureBackground.jpg"
+dest_files=["res://.godot/imported/natureBackground.jpg-cc90e6213457928ae93e206f7e597281.ctex"]
 
 [params]
 
