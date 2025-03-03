@@ -26,7 +26,7 @@ func game_start():
 	scoreLabel.text = "No Score!"
 
 func spawn_enemy():
-	var min_gap = 400  # Minimum distance between enemies
+	var min_gap = 450  # Minimum distance between enemies
 	var max_gap = 1000  # Maximum distance (for randomness)
 	var enemy_gap = randf_range(min_gap, max_gap)  # Random height for variety
 

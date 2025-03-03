@@ -9,6 +9,7 @@ var collision : CollisionShape2D
 @export var point = 0
 var dieVar : bool
 var tween : Tween
+@onready var scoreUpSound = $Scored
 signal point_changed(new_point)
 
 func _ready() -> void:
@@ -51,5 +52,6 @@ func die():
 	tween.tween_property(self, "modulate:a", 0, 1.0).set_delay(0.5)  # Fade out before disappearing
 	
 func get_point():
+	scoreUpSound.play()
 	point += 1
 	point_changed.emit(point)
