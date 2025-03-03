@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=3 uid="uid://cbk5mhdiofstw"]
+
+[ext_resource type="Script" path="res://main_screen.gd" id="1_g6e8y"]
+[ext_resource type="Shader" path="res://main_screen_fade_out.gdshader" id="2_oic3f"]
+[ext_resource type="Script" path="res://fade_overlay.gd" id="3_b0qgt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8h4ai"]
+bg_color = Color(1, 0.784314, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_whfda"]
+bg_color = Color(1, 0.784314, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ajkwf"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+shadow_size = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v51xe"]
+shader = ExtResource("2_oic3f")
+shader_parameter/circle_radius = 0.942
+shader_parameter/screen_center = Vector2(0.5, 0.5)
+
+[node name="MainScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g6e8y")
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0.34902, 0, 0.345098, 1)
+theme_override_colors/font_pressed_color = Color(0.34902, 0, 0.345098, 1)
+theme_override_colors/font_focus_color = Color(0.34902, 0, 0.345098, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+theme_override_styles/hover = SubResource("StyleBoxFlat_8h4ai")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_whfda")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ajkwf")
+text = "Start Game"
+
+[node name="OptionsButton" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0.34902, 0, 0.345098, 1)
+theme_override_colors/font_pressed_color = Color(0.34902, 0, 0.345098, 1)
+theme_override_colors/font_focus_color = Color(0.34902, 0, 0.345098, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+theme_override_styles/hover = SubResource("StyleBoxFlat_8h4ai")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_whfda")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ajkwf")
+text = "Options
+"
+
+[node name="ExitButton" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0.34902, 0, 0.345098, 1)
+theme_override_colors/font_pressed_color = Color(0.34902, 0, 0.345098, 1)
+theme_override_colors/font_focus_color = Color(0.34902, 0, 0.345098, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+theme_override_styles/hover = SubResource("StyleBoxFlat_8h4ai")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_whfda")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ajkwf")
+text = "Exit"
+
+[node name="FadeOverlay" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_v51xe")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("3_b0qgt")
