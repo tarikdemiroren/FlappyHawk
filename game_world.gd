@@ -9,6 +9,9 @@ var spawn_rate: float = 3.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	game_start()
+
+func game_start():
 	screen_width = get_viewport_rect().size.x
 	screen_height = get_viewport_rect().size.y
 	
@@ -23,9 +26,12 @@ func _ready() -> void:
 	scoreLabel.text = "No Score!"
 
 func spawn_enemy():
-	var enemy_gap = 660  # Distance between enemies
-	var min_y = 100  # Minimum Y position
-	var max_y = screen_height - enemy_gap - 100  # Ensure space for second enemy
+	var min_gap = 400  # Minimum distance between enemies
+	var max_gap = 1000  # Maximum distance (for randomness)
+	var enemy_gap = randf_range(min_gap, max_gap)  # Random height for variety
+
+	var min_y = 100  
+	var max_y = screen_height - enemy_gap - 100  
 
 	# Randomly pick a Y position within bounds
 	var enemy_y = randf_range(min_y, max_y)
@@ -33,6 +39,7 @@ func spawn_enemy():
 	# Create enemy instance (contains both obstacles + area)
 	var enemy_instance = enemy_scene.instantiate()
 	enemy_instance.position = Vector2(screen_width, enemy_y)
+	enemy_instance.score_area_height = enemy_gap  # Set dynamic score area height
 
 	# Add enemy to the scene
 	add_child(enemy_instance)

@@ -20,7 +20,7 @@ position = Vector2(0, -8)
 
 [node name="ScoreArea" type="Area2D" parent="VBoxContainer"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VBoxContainer/ScoreArea"]
+[node name="ScoreAreaShape" type="CollisionShape2D" parent="VBoxContainer/ScoreArea"]
 position = Vector2(0, 280)
 shape = SubResource("CapsuleShape2D_y36gp")
 
