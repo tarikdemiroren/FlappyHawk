@@ -9,6 +9,7 @@ var collision : CollisionShape2D
 @export var point = 0
 var dieVar : bool
 var tween : Tween
+signal point_changed(new_point)
 
 func _ready() -> void:
 	shape = $Birb
@@ -51,3 +52,4 @@ func die():
 	
 func get_point():
 	point += 1
+	point_changed.emit(point)

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://byeuafk0qui6j"]
+
+[ext_resource type="PackedScene" uid="uid://b6uyar7b1kef8" path="res://enemy_bird.tscn" id="1_3awb4"]
+[ext_resource type="Script" path="res://enemy_tuple.gd" id="1_a63hq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y36gp"]
+radius = 32.0
+height = 304.0
+
+[node name="EnemyTuple" type="Node2D"]
+script = ExtResource("1_a63hq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="EnemyBird" parent="VBoxContainer" instance=ExtResource("1_3awb4")]
+position = Vector2(0, -8)
+
+[node name="ScoreArea" type="Area2D" parent="VBoxContainer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VBoxContainer/ScoreArea"]
+position = Vector2(0, 280)
+shape = SubResource("CapsuleShape2D_y36gp")
+
+[node name="EnemyBird2" parent="VBoxContainer" instance=ExtResource("1_3awb4")]
+position = Vector2(0, 570)

@@ -18,6 +18,8 @@ func _ready() -> void:
 	timer.timeout.connect(spawn_enemy)
 	add_child(timer)
 	
+	player.point_changed.connect(_on_score_changed)
+	
 	scoreLabel.text = "No Score!"
 
 func spawn_enemy():
@@ -26,42 +28,18 @@ func spawn_enemy():
 	var max_y = screen_height - enemy_gap - 100  # Ensure space for second enemy
 
 	# Randomly pick a Y position within bounds
-	var enemy1_y = randf_range(min_y, max_y)
-	var enemy2_y = enemy1_y + enemy_gap  # Ensure fixed distance
+	var enemy_y = randf_range(min_y, max_y)
 
-	# Create enemy instances
-	var enemy1 = enemy_scene.instantiate()
-	var enemy2 = enemy_scene.instantiate()
+	# Create enemy instance (contains both obstacles + area)
+	var enemy_instance = enemy_scene.instantiate()
+	enemy_instance.position = Vector2(screen_width, enemy_y)
 
-	# Position enemies at the right edge with vertical spacing
-	enemy1.position = Vector2(screen_width, enemy1_y)
-	enemy2.position = Vector2(screen_width, enemy2_y)
-
-	# Create scoring area and attach to the upper enemy
-	var score_area = Area2D.new()
-	var collision_shape = CollisionShape2D.new()
-	var shape = RectangleShape2D.new()
-	shape.size = Vector2(50, enemy_gap)  # Small width, height equal to enemy gap
-	
-	collision_shape.shape = shape
-	score_area.add_child(collision_shape)
-
-	# Position score area between enemies
-	score_area.position = Vector2(0, enemy_gap / 2)  # Center it between enemies
-	score_area.body_entered.connect(_on_score_area_entered)
-
-	# Attach score area to uppermost enemy
-	enemy1.add_child(score_area)
-
-	# Add enemies to the scene
-	add_child(enemy1)
-	add_child(enemy2)
+	# Add enemy to the scene
+	add_child(enemy_instance)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-func _on_score_area_entered(body):
-	if body == player && body.has_method("get_point"):
-		player.get_point()
-		scoreLabel.text = "Score: " + str(player.point)
+func _on_score_changed(newScore):
+	scoreLabel.text = "Score: " + str(newScore)
