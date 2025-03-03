@@ -33,9 +33,10 @@ This project was built to **learn Godot and basic game design concepts**, coveri
 - **Refactoring** enemy logic for better maintainability.  
 
 ## 🚀 Future Improvements
-- Add sound effects and background music.  
-- Implement difficulty scaling (faster enemies over time).  
-- Improve animations and add a death screen.  
+- [ ] Add items for the player to pick up.
+- [ ] Add sound effects and background music.  
+- [ ] Implement difficulty scaling.  
+- [ ] Add a death screen.  
 
 ## 📝 License
 This project is a **personal learning project** and is open-source. Feel free to use and modify it!  
