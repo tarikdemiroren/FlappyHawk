@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cbk5mhdiofstw"]
 
-[ext_resource type="Script" path="res://scripts/interface/main_screen.gd" id="1_g6e8y"]
-[ext_resource type="Shader" path="res://scripts/interface/main_screen_fade_out.gdshader" id="2_oic3f"]
-[ext_resource type="Script" path="res://scripts/interface/fade_overlay.gd" id="3_b0qgt"]
+[ext_resource type="Script" path="res://scripts/interface/main_screen.gd" id="1_ocs7o"]
+[ext_resource type="Shader" path="res://scripts/interface/main_screen_fade_out.gdshader" id="2_ghii1"]
+[ext_resource type="Script" path="res://scripts/interface/fade_overlay.gd" id="3_52313"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8h4ai"]
 bg_color = Color(1, 0.784314, 1, 1)
@@ -24,8 +24,8 @@ corner_radius_bottom_right = 40
 shadow_size = 5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v51xe"]
-shader = ExtResource("2_oic3f")
-shader_parameter/circle_radius = 0.942
+shader = ExtResource("2_ghii1")
+shader_parameter/circle_radius = 0.275
 shader_parameter/screen_center = Vector2(0.5, 0.5)
 
 [node name="MainScreen" type="Control"]
@@ -35,7 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_g6e8y")
+script = ExtResource("1_ocs7o")
 
 [node name="ButtonsContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -101,4 +101,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
-script = ExtResource("3_b0qgt")
+script = ExtResource("3_52313")

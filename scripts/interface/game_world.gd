@@ -6,10 +6,13 @@ var spawn_rate: float = 3.0
 @export var enemy_scene: PackedScene
 @onready var player = $Bird
 @onready var scoreLabel = $ScoreLabel
+@onready var fadeScreen = $FadeOverlay
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	game_start()
+	await fadeScreen.start_fade_out()
+	fadeScreen.hide()
 
 func game_start():
 	screen_width = get_viewport_rect().size.x
