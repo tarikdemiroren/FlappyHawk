@@ -11,6 +11,7 @@ var dieVar : bool
 var tween : Tween
 @onready var scoreUpSound = $Scored
 signal point_changed(new_point)
+signal on_death()
 
 func _ready() -> void:
 	shape = $Birb
@@ -50,6 +51,7 @@ func die():
 	dieVar = true
 	tween = create_tween()
 	tween.tween_property(self, "modulate:a", 0, 1.0).set_delay(0.5)  # Fade out before disappearing
+	on_death.emit()
 	
 func get_point():
 	scoreUpSound.play()

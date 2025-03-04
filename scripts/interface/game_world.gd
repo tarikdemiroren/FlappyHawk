@@ -13,6 +13,7 @@ func _ready() -> void:
 	game_start()
 	await fadeScreen.start_fade_out()
 	fadeScreen.hide()
+	player.on_death.connect(game_over)
 
 func game_start():
 	screen_width = get_viewport_rect().size.x
@@ -27,6 +28,29 @@ func game_start():
 	player.point_changed.connect(_on_score_changed)
 	
 	scoreLabel.text = "No Score!"
+
+func game_over():
+	# Move score label to the center of the screen
+	var center_x = screen_width / 2 - scoreLabel.size.x / 2
+	var center_y = screen_height / 2 - scoreLabel.size.y / 2
+	scoreLabel.position = Vector2(center_x, center_y)
+
+	scoreLabel.add_theme_color_override("font_color", Color(1, 0, 0))  # Red color
+	scoreLabel.add_theme_font_size_override("font_size", 50)  # Bigger text
+
+	# Stop enemy spawning
+	for child in get_children():
+		if child is Timer:
+			child.stop()  # Stop the spawn timer
+
+	# Remove or hide all existing enemies
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		enemy.queue_free()  # Deletes enemies safely
+
+	# Fade the screen
+	fadeScreen.show()
+	await fadeScreen.start_fade_in()
+
 
 func spawn_enemy():
 	var min_gap = 450  # Minimum distance between enemies
@@ -47,6 +71,7 @@ func spawn_enemy():
 	# Add enemy to the scene
 	add_child(enemy_instance)
 	enemy_instance.change_score_area() 
+	enemy_instance.add_to_group("enemies")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

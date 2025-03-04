@@ -10,10 +10,6 @@ var speed: float = 200.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-		# Adjust the collision shape size
-	if scoreAreaShape and scoreAreaShape.shape is RectangleShape2D:
-		scoreAreaShape.shape.size.y = score_area_height  # Set height dynamically
-
 	# Adjust the position of the lower enemy (EnemyBird2) based on the height of the score area
 	enemyBird2.position.y = enemyBird.position.y + score_area_height  # Move it down
 	
