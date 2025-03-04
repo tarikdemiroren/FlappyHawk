@@ -24,6 +24,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	position.x -= speed * delta
 
+func change_score_area():
+	scoreAreaShape.shape.height = score_area_height 
+
 func _on_score_area_entered(body: Node2D):
 	if body.has_method("get_point"):
 		body.get_point()  # Player gets a point

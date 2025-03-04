@@ -46,6 +46,7 @@ func spawn_enemy():
 
 	# Add enemy to the scene
 	add_child(enemy_instance)
+	enemy_instance.change_score_area() 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
