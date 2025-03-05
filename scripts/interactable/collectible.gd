@@ -8,6 +8,24 @@ extends Node2D
 func _ready() -> void:
 	coinSpawnSound.play()
 	coinPickSound.finished.connect(_on_coin_pick_sound_finished)  # Wait for sound to finish
+	
+	var fadeTimer = Timer.new()
+	add_child(fadeTimer)
+	fadeTimer.start(4)
+	fadeTimer.timeout.connect(start_fade)
+
+func start_fade():
+	var tween = get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	
+	for i in range(6):
+		tween.tween_property(self, "modulate:a", 0.2, 0.1)
+		tween.tween_property(self, "modulate:a", 1.0, 0.1)
+
+	# Final fade-out to full transparency
+	tween.tween_property(self, "modulate:a", 0.0, 0.3)
+	tween.finished.connect(queue_free)  # Remove the coin when fading is done
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
