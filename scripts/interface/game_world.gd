@@ -78,6 +78,8 @@ func spawn_enemy():
 	enemy_instance.add_to_group("enemies")
 
 func spawn_coin():
+	if get_tree().get_nodes_in_group("coins").size() >= 4:
+		return
 	var coin_x = randf_range(50, screen_width-50)
 	var coin_y = randf_range(30, screen_height-30)
 	
