@@ -92,7 +92,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ajkwf")
 text = "Exit"
 
 [node name="FadeOverlay" type="ColorRect" parent="."]
-visible = false
 modulate = Color(0, 0, 0, 1)
 material = SubResource("ShaderMaterial_v51xe")
 layout_mode = 1
