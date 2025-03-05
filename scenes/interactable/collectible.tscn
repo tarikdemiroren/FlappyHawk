@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfnakm183vrm2"]
+
+[ext_resource type="Script" path="res://scripts/interactable/collectible.gd" id="1_83k1b"]
+[ext_resource type="Texture2D" uid="uid://34rtwi21xyug" path="res://assets/images/collectable.png" id="1_p2fgc"]
+[ext_resource type="AudioStream" uid="uid://2x8sj0mgeea4" path="res://assets/sounds/coin_spawn.mp3" id="3_lrefr"]
+[ext_resource type="AudioStream" uid="uid://dodvo6idibcc2" path="res://assets/sounds/coin_pick.mp3" id="4_pptp3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6shck"]
+radius = 56.0
+
+[node name="Collectible" type="Node2D"]
+script = ExtResource("1_83k1b")
+
+[node name="Collectable" type="Sprite2D" parent="."]
+scale = Vector2(0.4375, 0.4375)
+texture = ExtResource("1_p2fgc")
+
+[node name="CollectionArea" type="Area2D" parent="."]
+
+[node name="CollectionAreaShape" type="CollisionShape2D" parent="CollectionArea"]
+shape = SubResource("CircleShape2D_6shck")
+
+[node name="CoinSpawn" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_lrefr")
+
+[node name="CoinPick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_pptp3")
+
+[connection signal="body_entered" from="CollectionArea" to="." method="_on_collection_area_body_entered"]

@@ -57,3 +57,7 @@ func get_point():
 	scoreUpSound.play()
 	point += 1
 	point_changed.emit(point)
+
+func capture_coin():
+	point += 10
+	point_changed.emit(point)

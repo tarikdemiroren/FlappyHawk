@@ -4,6 +4,7 @@ var screen_width: int
 var screen_height: int
 var spawn_rate: float = 3.0
 @export var enemy_scene: PackedScene
+@export var coin_scene: PackedScene
 @onready var player = $Bird
 @onready var scoreLabel = $ScoreLabel
 @onready var fadeScreen = $FadeOverlay
@@ -23,6 +24,7 @@ func game_start():
 	timer.wait_time = spawn_rate
 	timer.autostart = true
 	timer.timeout.connect(spawn_enemy)
+	timer.timeout.connect(spawn_coin)
 	add_child(timer)
 	
 	player.point_changed.connect(_on_score_changed)
@@ -46,11 +48,13 @@ func game_over():
 	# Remove or hide all existing enemies
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		enemy.queue_free()  # Deletes enemies safely
+		
+	for coin in get_tree().get_nodes_in_group("coins"):
+		coin.queue_free()
 
 	# Fade the screen
 	fadeScreen.show()
 	await fadeScreen.start_fade_in()
-
 
 func spawn_enemy():
 	var min_gap = 450  # Minimum distance between enemies
@@ -72,6 +76,15 @@ func spawn_enemy():
 	add_child(enemy_instance)
 	enemy_instance.change_score_area() 
 	enemy_instance.add_to_group("enemies")
+
+func spawn_coin():
+	var coin_x = randf_range(50, screen_width-50)
+	var coin_y = randf_range(30, screen_height-30)
+	
+	var coin_instance = coin_scene.instantiate()
+	coin_instance.position = Vector2(coin_x, coin_y)
+	add_child(coin_instance)
+	coin_instance.add_to_group("coins")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
