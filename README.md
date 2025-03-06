@@ -33,7 +33,7 @@ This project was built to **learn Godot and basic game design concepts**, coveri
 - **Refactoring** enemy logic for better maintainability.  
 
 ## 🚀 Future Improvements
-- [ ] Add items for the player to pick up.
+- [x] Add items for the player to pick up.
 - [ ] Add sound effects and background music.  
 - [ ] Implement difficulty scaling.  
 - [ ] Add a death screen.  
