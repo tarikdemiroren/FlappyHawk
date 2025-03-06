@@ -1,15 +1,22 @@
 extends CharacterBody2D
 
-
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-var shape : Sprite2D
-var collision : CollisionShape2D
+const BOOST_MULTIPLIER = 1.8
+const BOOST_TIME = 0.3  # Time window for double-tap boost
+
 @export var health = 20
 @export var point = 0
-var dieVar : bool
-var tween : Tween
+
+var dieVar = false
+var last_jump_time = 0.0
+var can_boost = false
+var last_direction = 1  # 1 = right, -1 = left
+
+@onready var shape: Sprite2D = $Birb
+@onready var collision: CollisionShape2D = $BirdShape
 @onready var scoreUpSound = $Scored
+
 signal point_changed(new_point)
 signal on_death()
 
@@ -18,41 +25,54 @@ func _ready() -> void:
 	collision = $BirdShape
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity.y += get_gravity().y * delta  # Gravity always applies
 
-	if Input.is_action_just_pressed("ui_accept") && !dieVar:
-		velocity.y = JUMP_VELOCITY
-
-	var direction := Input.get_axis("ui_left", "ui_right")
-	
-	if direction != 0 && !dieVar:
-		shape.flip_h = direction < 0 
-
-	if direction:
+	# Handle horizontal movement
+	var direction = Input.get_axis("ui_left", "ui_right")
+	if direction != 0:
+		last_direction = direction
 		velocity.x = direction * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, SPEED * delta)  # Smooth stop
+
+	# Handle jump and boost
+	if Input.is_action_just_pressed("ui_accept") and not dieVar:
+		var current_time = Time.get_ticks_msec() / 1000.0
+		if can_boost and (current_time - last_jump_time <= BOOST_TIME):
+			apply_boost()
+		else:
+			velocity.y = JUMP_VELOCITY
+			can_boost = true  # Enable boost on next quick tap
+
+		last_jump_time = current_time
+
+	# Flip sprite based on direction
+	if velocity.x != 0:
+		shape.flip_h = velocity.x < 0
 
 	move_and_slide()
-	
+
+func apply_boost():
+	velocity += Vector2(last_direction * SPEED * BOOST_MULTIPLIER, JUMP_VELOCITY * 0.5)
+	can_boost = false  # Prevent multiple boosts
+
 func take_damage(damage):
 	health -= damage
 	$Hurted.play()
-	tween = create_tween()
-	tween.tween_property(shape, "modulate", Color(1, 0, 0), 0.1)  # Red tint
-	tween.tween_property(shape, "modulate", Color(1, 1, 1), 0.1).set_delay(0.1)  # Back to normal
+	var tween = create_tween()
+	tween.tween_property(shape, "modulate", Color(1, 0, 0), 0.1)
+	tween.tween_property(shape, "modulate", Color(1, 1, 1), 0.1).set_delay(0.1)
 	if health < 0:
 		die()
 
 func die():
 	shape.flip_v = true
 	dieVar = true
-	tween = create_tween()
-	tween.tween_property(self, "modulate:a", 0, 1.0).set_delay(0.5)  # Fade out before disappearing
+	var tween = create_tween()
+	tween.tween_property(self, "modulate:a", 0, 1.0).set_delay(0.5)
 	on_death.emit()
-	
+
 func get_point():
 	scoreUpSound.play()
 	point += 1
