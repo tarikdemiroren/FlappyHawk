@@ -59,6 +59,9 @@ func game_over():
 		
 	for coin in get_tree().get_nodes_in_group("coins"):
 		coin.queue_free()
+		
+	for health_item in get_tree().get_nodes_in_group("health_items"):
+		health_item.queue_free()
 
 	# Fade the screen
 	fadeScreen.show()
