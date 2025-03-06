@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b02s5t6nlvhwr"]
+[gd_scene load_steps=7 format=3 uid="uid://b02s5t6nlvhwr"]
 
 [ext_resource type="Script" path="res://scripts/player/bird.gd" id="1_6jn6j"]
 [ext_resource type="Texture2D" uid="uid://8gwcdfp11n5o" path="res://assets/images/birb.png" id="1_h42ap"]
 [ext_resource type="AudioStream" uid="uid://cf8vuhqjpaabi" path="res://assets/sounds/score_up.mp3" id="3_7g0hb"]
 [ext_resource type="AudioStream" uid="uid://dlh2oive5frcw" path="res://assets/sounds/hurted.mp3" id="3_ndsfm"]
+[ext_resource type="AudioStream" uid="uid://dhr2t7sw6y5f" path="res://assets/sounds/critical_health_sound.mp3" id="5_fwprt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s8w6k"]
 radius = 64.0
@@ -23,3 +24,6 @@ stream = ExtResource("3_7g0hb")
 
 [node name="Hurted" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_ndsfm")
+
+[node name="CriticalHealthSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_fwprt")

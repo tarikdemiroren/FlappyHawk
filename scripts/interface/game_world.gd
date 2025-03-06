@@ -5,6 +5,7 @@ var screen_height: int
 var spawn_rate: float = 3.0
 @export var enemy_scene: PackedScene
 @export var coin_scene: PackedScene
+@export var heart_scene: PackedScene
 @onready var player = $Bird
 @onready var scoreLabel = $ScoreLabel
 @onready var fadeScreen = $FadeOverlay
@@ -15,6 +16,13 @@ func _ready() -> void:
 	await fadeScreen.start_fade_out()
 	fadeScreen.hide()
 	player.on_death.connect(game_over)
+
+	# Set up a periodic health check timer
+	var health_check_timer = Timer.new()
+	health_check_timer.wait_time = 5.0  # Check health every 1 second
+	health_check_timer.autostart = true
+	health_check_timer.timeout.connect(check_player_health)
+	add_child(health_check_timer)
 
 func game_start():
 	screen_width = get_viewport_rect().size.x
@@ -87,6 +95,21 @@ func spawn_coin():
 	coin_instance.position = Vector2(coin_x, coin_y)
 	add_child(coin_instance)
 	coin_instance.add_to_group("coins")
+
+# Periodically check player health and spawn health items if needed
+func check_player_health():
+	if player.health < 20 and get_tree().get_nodes_in_group("health_items").size() < 2:
+		spawn_health_item()
+
+# Spawn a health item at a random position on the screen
+func spawn_health_item():
+	var health_x = randf_range(50, screen_width - 50)
+	var health_y = randf_range(30, screen_height - 30)
+	
+	var health_instance = heart_scene.instantiate()
+	health_instance.position = Vector2(health_x, health_y)
+	add_child(health_instance)
+	health_instance.add_to_group("health_items")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

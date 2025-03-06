@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://084rl3mtbu53"]
+[gd_scene load_steps=11 format=3 uid="uid://084rl3mtbu53"]
 
 [ext_resource type="Script" path="res://scripts/interface/game_world.gd" id="1_kslu6"]
 [ext_resource type="PackedScene" uid="uid://byeuafk0qui6j" path="res://scenes/enemy/enemy_tuple.tscn" id="2_33hkd"]
 [ext_resource type="Texture2D" uid="uid://5fvcerjug5r3" path="res://assets/images/natureBackground.jpg" id="3_3ynnq"]
-[ext_resource type="PackedScene" uid="uid://bfnakm183vrm2" path="res://scenes/interactable/collectibleCoin.tscn" id="3_v06bg"]
+[ext_resource type="PackedScene" uid="uid://bfnakm183vrm2" path="res://scenes/interactable/collectible_coin.tscn" id="3_v06bg"]
+[ext_resource type="PackedScene" uid="uid://cvolmj6imrwg3" path="res://scenes/interactable/collectible_heart.tscn" id="4_8twbl"]
 [ext_resource type="PackedScene" uid="uid://b02s5t6nlvhwr" path="res://scenes/player/bird.tscn" id="4_ar8wf"]
 [ext_resource type="Shader" path="res://scripts/interface/main_screen_fade_out.gdshader" id="5_o5y45"]
 [ext_resource type="Script" path="res://scripts/interface/fade_overlay.gd" id="6_12guc"]
@@ -21,6 +22,7 @@ font_size = 43
 script = ExtResource("1_kslu6")
 enemy_scene = ExtResource("2_33hkd")
 coin_scene = ExtResource("3_v06bg")
+heart_scene = ExtResource("4_8twbl")
 
 [node name="BoxContainer" type="BoxContainer" parent="."]
 clip_contents = true

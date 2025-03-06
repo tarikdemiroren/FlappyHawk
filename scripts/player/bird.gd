@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-const BOOST_MULTIPLIER = 1.8
-const BOOST_TIME = 0.3  # Time window for double-tap boost
+const JUMP_VELOCITY = -500.0
+const BOOST_MULTIPLIER = 2.3
+const BOOST_TIME = 0.2  # Time window for double-tap boost
 
 @export var health = 20
 @export var point = 0
@@ -16,6 +16,7 @@ var last_direction = 1  # 1 = right, -1 = left
 @onready var shape: Sprite2D = $Birb
 @onready var collision: CollisionShape2D = $BirdShape
 @onready var scoreUpSound = $Scored
+@onready var criticalSound = $CriticalHealthSound
 
 signal point_changed(new_point)
 signal on_death()
@@ -30,12 +31,22 @@ func _physics_process(delta: float) -> void:
 
 	# Handle horizontal movement
 	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction != 0:
-		last_direction = direction
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED * delta)  # Smooth stop
 
+	if direction != 0:
+		# Instantly change direction instead of gradually shifting
+		if sign(velocity.x) != sign(direction):
+			velocity.x = 0  # Reset velocity to prevent drift
+
+		last_direction = direction
+
+		# Only update velocity if it's not already exceeding the target speed
+		if abs(velocity.x) < SPEED:
+			velocity.x = move_toward(
+				velocity.x, direction * SPEED, SPEED * (5 if abs(velocity.x) > SPEED * 0.5 else 7) * delta
+			)
+	else:
+		var friction = SPEED * 2.5 * delta  # Increase this value for stronger friction
+		velocity.x = move_toward(velocity.x, 0, friction) 
 	# Handle jump and boost
 	if Input.is_action_just_pressed("ui_accept") and not dieVar:
 		var current_time = Time.get_ticks_msec() / 1000.0
@@ -65,6 +76,8 @@ func take_damage(damage):
 	tween.tween_property(shape, "modulate", Color(1, 1, 1), 0.1).set_delay(0.1)
 	if health < 0:
 		die()
+	elif health < 10:
+		criticalSound.play()
 
 func die():
 	shape.flip_v = true
@@ -81,3 +94,6 @@ func get_point():
 func capture_coin():
 	point += 10
 	point_changed.emit(point)
+
+func health_up():
+	health += 10
