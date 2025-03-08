@@ -43,10 +43,13 @@ func game_over():
 	# Move score label to the center of the screen
 	var center_x = screen_width / 2 - scoreLabel.size.x / 2
 	var center_y = screen_height / 2 - scoreLabel.size.y / 2
-	scoreLabel.position = Vector2(center_x, center_y)
+	scoreLabel.position = Vector2(center_x - 15, center_y)
 
 	scoreLabel.add_theme_color_override("font_color", Color(1, 0, 0))  # Red color
 	scoreLabel.add_theme_font_size_override("font_size", 50)  # Bigger text
+	var button = $ReturnButton
+	button.text = "Retry!"
+	button.position = Vector2(center_x, center_y + 50)
 
 	# Stop enemy spawning
 	for child in get_children():
@@ -120,3 +123,6 @@ func _process(delta: float) -> void:
 
 func _on_score_changed(newScore):
 	scoreLabel.text = "Score: " + str(newScore)
+
+func _retry_button_pressed() -> void:
+	get_tree().reload_current_scene()
