@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -500.0
-const BOOST_MULTIPLIER = 2.3
+var SPEED = 300.0
+var JUMP_VELOCITY = -500.0
+var BOOST_MULTIPLIER = 2.3
 const BOOST_TIME = 0.2  # Time window for double-tap boost
 
 @export var health = 20
@@ -24,6 +24,12 @@ signal on_death()
 func _ready() -> void:
 	shape = $Birb
 	collision = $BirdShape
+	if GlobalVariables.speed != 0.0:
+		SPEED = GlobalVariables.speed
+	if GlobalVariables.jump_velocity != 0.0:
+		JUMP_VELOCITY = GlobalVariables.jump_velocity
+	if GlobalVariables.boost_multiplier != 0.0:
+		BOOST_MULTIPLIER = GlobalVariables.boost_multiplier
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
