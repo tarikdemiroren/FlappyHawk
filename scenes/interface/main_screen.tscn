@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbk5mhdiofstw"]
+[gd_scene load_steps=12 format=3 uid="uid://cbk5mhdiofstw"]
 
 [ext_resource type="Script" path="res://scripts/interface/main_screen.gd" id="1_ocs7o"]
 [ext_resource type="Shader" path="res://scripts/interface/main_screen_fade_out.gdshader" id="2_ghii1"]
@@ -30,6 +30,10 @@ shader_parameter/circle_radius = 0.275
 shader_parameter/screen_center = Vector2(0.5, 0.5)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_6066i"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lsfhh"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_5quni"]
 
 [node name="MainScreen" type="Control"]
 layout_mode = 3
@@ -135,7 +139,7 @@ alignment = 1
 [node name="SpeedLabel" type="Label" parent="OptionsContainer/SpeedChoice"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "SPEED - "
+text = "Speed - "
 
 [node name="SpinBox" type="SpinBox" parent="OptionsContainer/SpeedChoice"]
 layout_mode = 2
@@ -145,6 +149,40 @@ max_value = 700.0
 step = 10.0
 value = 300.0
 
+[node name="JumpVelocityChoice" type="HBoxContainer" parent="OptionsContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="JumpVelocityLabel" type="Label" parent="OptionsContainer/JumpVelocityChoice"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Jump Velocity -"
+
+[node name="SpinBox" type="SpinBox" parent="OptionsContainer/JumpVelocityChoice"]
+layout_mode = 2
+theme_override_icons/updown = SubResource("ViewportTexture_lsfhh")
+min_value = 200.0
+max_value = 700.0
+step = 10.0
+value = 500.0
+
+[node name="BoostChoice" type="HBoxContainer" parent="OptionsContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BoostLabel" type="Label" parent="OptionsContainer/BoostChoice"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Boost Multiplier -"
+
+[node name="SpinBox" type="SpinBox" parent="OptionsContainer/BoostChoice"]
+layout_mode = 2
+theme_override_icons/updown = SubResource("ImageTexture_5quni")
+min_value = 1.0
+max_value = 5.0
+step = 0.1
+value = 1.0
+
 [node name="GoBack" type="Button" parent="OptionsContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
@@ -152,4 +190,6 @@ text = "Go Back"
 
 [connection signal="pressed" from="OptionsContainer/CheckButton" to="." method="_on_check_button_pressed"]
 [connection signal="value_changed" from="OptionsContainer/SpeedChoice/SpinBox" to="." method="_on_spin_box_value_changed"]
+[connection signal="value_changed" from="OptionsContainer/JumpVelocityChoice/SpinBox" to="." method="_on_spin_box_value_changed2"]
+[connection signal="value_changed" from="OptionsContainer/BoostChoice/SpinBox" to="." method="_on_spin_box_value_changed3"]
 [connection signal="pressed" from="OptionsContainer/GoBack" to="." method="_on_go_back_pressed"]

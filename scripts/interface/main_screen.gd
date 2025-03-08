@@ -47,7 +47,12 @@ func _on_check_button_pressed() -> void:
 func _on_spin_box_value_changed(value: float) -> void:
 	GlobalVariables.speed = value
 
-
 func _on_go_back_pressed() -> void:
 	optionsContainer.hide()
 	buttonsContainer.show()
+
+func _on_spin_box_value_changed2(value: float) -> void:
+	GlobalVariables.jump_velocity = -value
+
+func _on_spin_box_value_changed3(value: float) -> void:
+	GlobalVariables.boost_multiplier = value
