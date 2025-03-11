@@ -168,7 +168,6 @@ value = 500.0
 
 [node name="BoostChoice" type="HBoxContainer" parent="OptionsContainer"]
 layout_mode = 2
-alignment = 1
 
 [node name="BoostLabel" type="Label" parent="OptionsContainer/BoostChoice"]
 layout_mode = 2

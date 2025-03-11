@@ -1,13 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://084rl3mtbu53"]
+[gd_scene load_steps=13 format=3 uid="uid://084rl3mtbu53"]
 
 [ext_resource type="Script" path="res://scripts/interface/game_world.gd" id="1_kslu6"]
 [ext_resource type="PackedScene" uid="uid://byeuafk0qui6j" path="res://scenes/enemy/enemy_tuple.tscn" id="2_33hkd"]
-[ext_resource type="Texture2D" uid="uid://5fvcerjug5r3" path="res://assets/images/natureBackground.jpg" id="3_3ynnq"]
 [ext_resource type="PackedScene" uid="uid://bfnakm183vrm2" path="res://scenes/interactable/collectible_coin.tscn" id="3_v06bg"]
 [ext_resource type="PackedScene" uid="uid://cvolmj6imrwg3" path="res://scenes/interactable/collectible_heart.tscn" id="4_8twbl"]
-[ext_resource type="PackedScene" uid="uid://b02s5t6nlvhwr" path="res://scenes/player/bird.tscn" id="4_ar8wf"]
+[ext_resource type="PackedScene" uid="uid://cbcjxq5uevq5f" path="res://scenes/player/bird.tscn" id="4_ar8wf"]
+[ext_resource type="Texture2D" uid="uid://d3tm5m1in3n6s" path="res://assets/images/background.png" id="5_ngcsn"]
 [ext_resource type="Shader" path="res://scripts/interface/main_screen_fade_out.gdshader" id="5_o5y45"]
 [ext_resource type="Script" path="res://scripts/interface/fade_overlay.gd" id="6_12guc"]
+[ext_resource type="PackedScene" uid="uid://c7b16idcqpy50" path="res://scenes/interface/health_container.tscn" id="9_jqvoa"]
+[ext_resource type="FontFile" uid="uid://co48a4mceener" path="res://assets/fonts/PixelGame.otf" id="9_sy67g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_67670"]
 shader = ExtResource("5_o5y45")
@@ -16,7 +18,11 @@ shader_parameter/screen_center = Vector2(0.5, 0.5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_csxbs"]
 line_spacing = 4.0
-font_size = 43
+font = ExtResource("9_sy67g")
+font_size = 70
+font_color = Color(1, 0, 0, 1)
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
 
 [node name="GameWorld" type="Node2D"]
 script = ExtResource("1_kslu6")
@@ -42,7 +48,7 @@ clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-texture = ExtResource("3_3ynnq")
+texture = ExtResource("5_ngcsn")
 stretch_mode = 4
 metadata/_edit_use_anchors_ = true
 
@@ -58,14 +64,56 @@ size_flags_horizontal = 3
 color = Color(0, 0, 0, 1)
 script = ExtResource("6_12guc")
 
-[node name="ScoreLabel" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 59.0
+[node name="HealthContainer" parent="." instance=ExtResource("9_jqvoa")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 179.0
+offset_top = 20.0
+offset_right = 179.0
+offset_bottom = 20.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.6, 0.6)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1252.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(960, 626)
+
+[node name="ScoreLabel" type="Label" parent="Control"]
+offset_left = 1542.0
+offset_top = 26.0
+offset_right = 1894.0
+offset_bottom = 98.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 70
 label_settings = SubResource("LabelSettings_csxbs")
+horizontal_alignment = 2
 
-[node name="ReturnButton" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="ReturnButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
 theme_override_font_sizes/font_size = 35
+text = "Retry!"
 
-[connection signal="pressed" from="ReturnButton" to="." method="_retry_button_pressed"]
+[connection signal="pressed" from="Control/ReturnButton" to="." method="_retry_button_pressed"]

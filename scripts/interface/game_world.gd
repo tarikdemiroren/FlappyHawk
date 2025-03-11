@@ -7,12 +7,16 @@ var spawn_rate: float = 3.0
 @export var coin_scene: PackedScene
 @export var heart_scene: PackedScene
 @onready var player = $Bird
-@onready var scoreLabel = $ScoreLabel
+@onready var scoreLabel = $Control/ScoreLabel
 @onready var fadeScreen = $FadeOverlay
+@onready var healthContainer = $HealthContainer
+@onready var retryButton = $Control/ReturnButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	player.health_changed.connect(healthContainer.update_health)
 	game_start()
+	retryButton.hide()
 	await fadeScreen.start_fade_out()
 	fadeScreen.hide()
 	player.on_death.connect(game_over)
@@ -47,9 +51,6 @@ func game_over():
 
 	scoreLabel.add_theme_color_override("font_color", Color(1, 0, 0))  # Red color
 	scoreLabel.add_theme_font_size_override("font_size", 50)  # Bigger text
-	var button = $ReturnButton
-	button.text = "Retry!"
-	button.position = Vector2(center_x, center_y + 50)
 
 	# Stop enemy spawning
 	for child in get_children():
@@ -65,6 +66,8 @@ func game_over():
 		
 	for health_item in get_tree().get_nodes_in_group("health_items"):
 		health_item.queue_free()
+
+	retryButton.show()
 
 	# Fade the screen
 	fadeScreen.show()

@@ -5,38 +5,39 @@
 [ext_resource type="AudioStream" uid="uid://pngp1ccgejja" path="res://assets/sounds/hawkSound.mp3" id="3_u15i6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p4ut1"]
-radius = 46.6218
+radius = 35.443
 height = 256.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ysjsk"]
-radius = 51.225
-height = 214.911
+radius = 107.282
+height = 315.563
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gvw02"]
-radius = 80.0
+radius = 96.0
 
 [node name="EnemyBird" type="Node2D"]
+scale = Vector2(0.73, 0.73)
 script = ExtResource("1_10ps1")
-
-[node name="BirdCatcher" type="Area2D" parent="."]
-
-[node name="EnemyBirdShape" type="CollisionShape2D" parent="BirdCatcher"]
-position = Vector2(-48, -8)
-rotation = -0.997075
-shape = SubResource("CapsuleShape2D_p4ut1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BirdCatcher"]
-position = Vector2(80, -32)
-rotation = 0.676033
-shape = SubResource("CapsuleShape2D_ysjsk")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="BirdCatcher"]
-position = Vector2(32, 56)
-shape = SubResource("CircleShape2D_gvw02")
 
 [node name="Hawk" type="Sprite2D" parent="."]
 texture = ExtResource("1_sue20")
 flip_h = true
+
+[node name="BirdCatcher" type="Area2D" parent="."]
+
+[node name="EnemyBirdShape" type="CollisionShape2D" parent="BirdCatcher"]
+position = Vector2(-16, 104)
+rotation = -0.600433
+shape = SubResource("CapsuleShape2D_p4ut1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BirdCatcher"]
+position = Vector2(16, -72)
+rotation = 0.433473
+shape = SubResource("CapsuleShape2D_ysjsk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BirdCatcher"]
+position = Vector2(-80, 56)
+shape = SubResource("CircleShape2D_gvw02")
 
 [node name="Squeek" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_u15i6")

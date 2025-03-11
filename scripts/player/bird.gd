@@ -18,8 +18,10 @@ var last_direction = 1  # 1 = right, -1 = left
 @onready var scoreUpSound = $Scored
 @onready var criticalSound = $CriticalHealthSound
 
+
 signal point_changed(new_point)
 signal on_death()
+signal health_changed(health)
 
 func _ready() -> void:
 	shape = $Birb
@@ -69,6 +71,13 @@ func _physics_process(delta: float) -> void:
 		shape.flip_h = velocity.x < 0
 
 	move_and_slide()
+	
+	var screen_size = get_viewport_rect().size
+	var margin_x = 20
+	var margin_y = 90
+	
+	global_position.x = clamp(global_position.x, -margin_x, screen_size.x + margin_x)
+	global_position.y = clamp(global_position.y, -margin_y, screen_size.y + margin_y)
 
 func apply_boost():
 	velocity += Vector2(last_direction * SPEED * BOOST_MULTIPLIER, JUMP_VELOCITY * 0.5)
@@ -76,6 +85,7 @@ func apply_boost():
 
 func take_damage(damage):
 	health -= damage
+	health_changed.emit(health)
 	$Hurted.play()
 	var tween = create_tween()
 	tween.tween_property(shape, "modulate", Color(1, 0, 0), 0.1)
@@ -103,3 +113,4 @@ func capture_coin():
 
 func health_up():
 	health += 10
+	health_changed.emit(health)
