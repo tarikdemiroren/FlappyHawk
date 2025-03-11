@@ -12,7 +12,6 @@ func _ready() -> void:
 	update_health(INITIAL_HEALTH)
 
 func update_health(health: int):
-	print("Called update health with health: ", health)
 	for i in range(hearts_container.get_child_count()):
 		var heart = hearts_container.get_child(i)
 		heart.visible = i <= (health / HEALTH_HEART_RATIO)

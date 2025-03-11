@@ -49,8 +49,7 @@ func game_over():
 	var center_y = screen_height / 2 - scoreLabel.size.y / 2
 	scoreLabel.position = Vector2(center_x - 15, center_y)
 
-	scoreLabel.add_theme_color_override("font_color", Color(1, 0, 0))  # Red color
-	scoreLabel.add_theme_font_size_override("font_size", 50)  # Bigger text
+	scoreLabel.add_theme_font_size_override("font_size", 100)  # Bigger text
 
 	# Stop enemy spawning
 	for child in get_children():
