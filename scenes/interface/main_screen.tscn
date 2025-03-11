@@ -1,28 +1,48 @@
-[gd_scene load_steps=12 format=3 uid="uid://cbk5mhdiofstw"]
+[gd_scene load_steps=29 format=3 uid="uid://cbk5mhdiofstw"]
 
 [ext_resource type="Script" path="res://scripts/interface/main_screen.gd" id="1_ocs7o"]
+[ext_resource type="Texture2D" uid="uid://iqx7q8px8s6r" path="res://assets/ui/StartButtonPress.png" id="2_dl0ci"]
 [ext_resource type="Shader" path="res://scripts/interface/main_screen_fade_out.gdshader" id="2_ghii1"]
+[ext_resource type="Texture2D" uid="uid://onoh3j8mv0l5" path="res://assets/ui/StartButtonHover.png" id="2_h4hll"]
+[ext_resource type="Texture2D" uid="uid://dqqu04cfi20kc" path="res://assets/ui/StartButton.png" id="3_0wvee"]
 [ext_resource type="Script" path="res://scripts/interface/fade_overlay.gd" id="3_52313"]
 [ext_resource type="Texture2D" uid="uid://c83cehvk17doh" path="res://assets/images/fullscreen_icon.png" id="4_ygp4w"]
+[ext_resource type="Texture2D" uid="uid://dhfqv045ogv8f" path="res://assets/ui/OptionsButtonHover.png" id="5_gkxq2"]
+[ext_resource type="Texture2D" uid="uid://ru7n55nt8xcp" path="res://assets/ui/OptionsButton.png" id="6_ha8qs"]
+[ext_resource type="Texture2D" uid="uid://1pso8d43hbr8" path="res://assets/ui/OptionsButtonPress.png" id="6_u1k80"]
+[ext_resource type="Texture2D" uid="uid://8ig50jwtkgbv" path="res://assets/ui/ExitButtonHover.png" id="7_pny72"]
+[ext_resource type="Texture2D" uid="uid://ba5dxh5erx6ha" path="res://assets/ui/ExitButtonPress.png" id="8_3dqof"]
+[ext_resource type="Texture2D" uid="uid://bexwi0h6rkqup" path="res://assets/ui/ExitButton.png" id="8_s3nbd"]
+[ext_resource type="AudioStream" uid="uid://0ooddbave5p6" path="res://assets/sounds/key_press.mp3" id="8_t0ca2"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8h4ai"]
-bg_color = Color(1, 0.784314, 1, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_left = 40
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t4d8h"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_whfda"]
-bg_color = Color(1, 0.784314, 1, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_left = 40
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y56i2"]
+texture = ExtResource("2_h4hll")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ajkwf"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-shadow_size = 5
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sshq0"]
+texture = ExtResource("2_dl0ci")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8v8sr"]
+texture = ExtResource("3_0wvee")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tuhk7"]
+texture = ExtResource("5_gkxq2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a7ah5"]
+texture = ExtResource("6_u1k80")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5tfdu"]
+texture = ExtResource("6_ha8qs")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bqfd5"]
+texture = ExtResource("7_pny72")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kwwhk"]
+texture = ExtResource("8_3dqof")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bq6qx"]
+texture = ExtResource("8_s3nbd")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v51xe"]
 shader = ExtResource("2_ghii1")
@@ -66,10 +86,10 @@ theme_override_colors/font_pressed_color = Color(0.34902, 0, 0.345098, 1)
 theme_override_colors/font_focus_color = Color(0.34902, 0, 0.345098, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
-theme_override_styles/hover = SubResource("StyleBoxFlat_8h4ai")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_whfda")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ajkwf")
-text = "Start Game"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t4d8h")
+theme_override_styles/hover = SubResource("StyleBoxTexture_y56i2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_sshq0")
+theme_override_styles/normal = SubResource("StyleBoxTexture_8v8sr")
 
 [node name="OptionsButton" type="Button" parent="ButtonsContainer"]
 layout_mode = 2
@@ -79,11 +99,10 @@ theme_override_colors/font_pressed_color = Color(0.34902, 0, 0.345098, 1)
 theme_override_colors/font_focus_color = Color(0.34902, 0, 0.345098, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
-theme_override_styles/hover = SubResource("StyleBoxFlat_8h4ai")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_whfda")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ajkwf")
-text = "Options
-"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t4d8h")
+theme_override_styles/hover = SubResource("StyleBoxTexture_tuhk7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_a7ah5")
+theme_override_styles/normal = SubResource("StyleBoxTexture_5tfdu")
 
 [node name="ExitButton" type="Button" parent="ButtonsContainer"]
 layout_mode = 2
@@ -93,10 +112,10 @@ theme_override_colors/font_pressed_color = Color(0.34902, 0, 0.345098, 1)
 theme_override_colors/font_focus_color = Color(0.34902, 0, 0.345098, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
-theme_override_styles/hover = SubResource("StyleBoxFlat_8h4ai")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_whfda")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ajkwf")
-text = "Exit"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t4d8h")
+theme_override_styles/hover = SubResource("StyleBoxTexture_bqfd5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kwwhk")
+theme_override_styles/normal = SubResource("StyleBoxTexture_bq6qx")
 
 [node name="FadeOverlay" type="ColorRect" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -111,6 +130,7 @@ color = Color(0, 0, 0, 1)
 script = ExtResource("3_52313")
 
 [node name="OptionsContainer" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -156,7 +176,7 @@ alignment = 1
 [node name="JumpVelocityLabel" type="Label" parent="OptionsContainer/JumpVelocityChoice"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "Jump Velocity -"
+text = "Jump Velocity - "
 
 [node name="SpinBox" type="SpinBox" parent="OptionsContainer/JumpVelocityChoice"]
 layout_mode = 2
@@ -172,7 +192,7 @@ layout_mode = 2
 [node name="BoostLabel" type="Label" parent="OptionsContainer/BoostChoice"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "Boost Multiplier -"
+text = "Boost Multiplier - "
 
 [node name="SpinBox" type="SpinBox" parent="OptionsContainer/BoostChoice"]
 layout_mode = 2
@@ -186,6 +206,9 @@ value = 1.0
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "Go Back"
+
+[node name="KeySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_t0ca2")
 
 [connection signal="pressed" from="OptionsContainer/CheckButton" to="." method="_on_check_button_pressed"]
 [connection signal="value_changed" from="OptionsContainer/SpeedChoice/SpinBox" to="." method="_on_spin_box_value_changed"]

@@ -6,8 +6,9 @@
 [ext_resource type="AudioStream" uid="uid://dlh2oive5frcw" path="res://assets/sounds/hurted.mp3" id="3_ndsfm"]
 [ext_resource type="AudioStream" uid="uid://dhr2t7sw6y5f" path="res://assets/sounds/critical_health_sound.mp3" id="5_fwprt"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_s8w6k"]
-radius = 56.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yr36q"]
+radius = 31.989
+height = 111.962
 
 [node name="Bird" type="CharacterBody2D"]
 script = ExtResource("1_6jn6j")
@@ -17,8 +18,8 @@ scale = Vector2(0.48, 0.48)
 texture = ExtResource("1_h42ap")
 
 [node name="BirdShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
-shape = SubResource("CircleShape2D_s8w6k")
+rotation = 1.59698
+shape = SubResource("CapsuleShape2D_yr36q")
 
 [node name="Scored" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_7g0hb")

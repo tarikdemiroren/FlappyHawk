@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bexwi0h6rkqup"
-path="res://.godot/imported/ExitButton.png-a4e0ea6197125b405ed78dedd51bc92d.ctex"
+uid="uid://dhfqv045ogv8f"
+path="res://.godot/imported/OptionsButtonHover.png-df3f5c5cc71dd39fa889a8b1b8bd9707.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/ExitButton.png"
-dest_files=["res://.godot/imported/ExitButton.png-a4e0ea6197125b405ed78dedd51bc92d.ctex"]
+source_file="res://assets/ui/OptionsButtonHover.png"
+dest_files=["res://.godot/imported/OptionsButtonHover.png-df3f5c5cc71dd39fa889a8b1b8bd9707.ctex"]
 
 [params]
 

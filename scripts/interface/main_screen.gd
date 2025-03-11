@@ -6,6 +6,7 @@ extends Control
 @onready var fadeOverlay = $FadeOverlay
 @onready var optionsContainer = $OptionsContainer
 @onready var buttonsContainer = $ButtonsContainer
+@onready var keySound = $KeySound 
 
 @export var startScene : PackedScene
 
@@ -25,15 +26,18 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_start_pressed():
+	keySound.play()
 	fadeOverlay.show()
 	await fadeOverlay.start_fade_in()
 	get_tree().change_scene_to_packed(startScene)
 
 func _on_options_pressed():
+	keySound.play()
 	buttonsContainer.hide()
 	optionsContainer.show()
 	
 func _on_exit_pressed():
+	keySound.play()
 	fadeOverlay.show()
 	await fadeOverlay.start_fade_in()
 	get_tree().quit()  # Quit after the effect is done
@@ -48,6 +52,7 @@ func _on_spin_box_value_changed(value: float) -> void:
 	GlobalVariables.speed = value
 
 func _on_go_back_pressed() -> void:
+	keySound.play()
 	optionsContainer.hide()
 	buttonsContainer.show()
 
