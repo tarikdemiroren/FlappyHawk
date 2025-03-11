@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7b16idcqpy50"]
+
+[ext_resource type="Texture2D" uid="uid://er08mqa8rvwo" path="res://assets/images/heart_image.png" id="1_ggp1f"]
+[ext_resource type="Script" path="res://scripts/interface/health_container.gd" id="1_yxamo"]
+[ext_resource type="Shader" path="res://scripts/interface/health_container.gdshader" id="2_xjb20"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dx8op"]
+shader = ExtResource("2_xjb20")
+
+[node name="HealthContainer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yxamo")
+
+[node name="HeartsContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.151063
+anchor_top = 0.0215655
+anchor_right = 0.464063
+anchor_bottom = 0.109425
+offset_left = -263.04
+offset_right = -234.0
+theme_override_constants/separation = 20
+metadata/_edit_use_anchors_ = true
+
+[node name="Heart1" type="TextureRect" parent="HeartsContainer"]
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+texture = ExtResource("1_ggp1f")
+expand_mode = 1
+
+[node name="Heart2" type="TextureRect" parent="HeartsContainer"]
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+texture = ExtResource("1_ggp1f")
+expand_mode = 1
+
+[node name="Heart3" type="TextureRect" parent="HeartsContainer"]
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+texture = ExtResource("1_ggp1f")
+expand_mode = 1
+
+[node name="Heart4" type="TextureRect" parent="HeartsContainer"]
+material = SubResource("ShaderMaterial_dx8op")
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+texture = ExtResource("1_ggp1f")
+expand_mode = 1
+
+[node name="Heart5" type="TextureRect" parent="HeartsContainer"]
+material = SubResource("ShaderMaterial_dx8op")
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+texture = ExtResource("1_ggp1f")
+expand_mode = 1
