@@ -29,3 +29,7 @@ stream = ExtResource("3_ndsfm")
 
 [node name="CriticalHealthSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_fwprt")
+
+[node name="DoublePointTimer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true

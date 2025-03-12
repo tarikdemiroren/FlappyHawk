@@ -12,12 +12,13 @@ var dieVar = false
 var last_jump_time = 0.0
 var can_boost = false
 var last_direction = 1  # 1 = right, -1 = left
+var double_point_active = false
 
 @onready var shape: Sprite2D = $Birb
 @onready var collision: CollisionShape2D = $BirdShape
 @onready var scoreUpSound = $Scored
 @onready var criticalSound = $CriticalHealthSound
-
+@onready var double_point_timer = $DoublePointTimer
 
 signal point_changed(new_point)
 signal on_death()
@@ -32,6 +33,11 @@ func _ready() -> void:
 		JUMP_VELOCITY = GlobalVariables.jump_velocity
 	if GlobalVariables.boost_multiplier != 0.0:
 		BOOST_MULTIPLIER = GlobalVariables.boost_multiplier
+		
+	double_point_timer.timeout.connect(double_point_reset)
+
+func double_point_reset():
+	double_point_active = false
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -82,6 +88,8 @@ func _physics_process(delta: float) -> void:
 func apply_boost():
 	velocity += Vector2(last_direction * SPEED * BOOST_MULTIPLIER, JUMP_VELOCITY * 0.5)
 	can_boost = false  # Prevent multiple boosts
+	double_point_active = true
+	double_point_timer.start(0.5)
 
 func take_damage(damage):
 	health -= damage
@@ -104,7 +112,13 @@ func die():
 
 func get_point():
 	scoreUpSound.play()
-	point += 1
+	
+	if double_point_active:
+		point += 2
+		print("Double Point")
+	else:
+		point += 1
+	
 	point_changed.emit(point)
 
 func capture_coin():
