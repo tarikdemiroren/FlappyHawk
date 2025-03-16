@@ -17,12 +17,18 @@ A simple **Flappy Bird-inspired** game built with **Godot 4.3** as a **learning 
 - Pass between enemy hawks to earn points!  
 
 ## 📦 Installation
-1. Clone this repository:
-   ```sh
-   git clone https://github.com/tarikdemiroren/FlappyHawk.git
-   ```
-2. Open the project in **Godot 4.3**.  
-3. Click **Run** ▶ to start playing!  
+
+1. **Download the appropriate version** from the **Releases** tab.  
+2. **Decompress and open the folder** based on your platform:  
+   - **Windows**: Double-click the `.exe` file to launch the game.  
+   - **Web Version**:  
+     1. Run the `serve.py` script in the directory containing the HTML file:  
+        ```sh
+        python3 serve.py --root ./
+        ```  
+     2. Open `debug_build.html` in your browser.  
+3. **Enjoy the game!** 🎮  
+
 
 ## 📖 What I Learned
 This project was built to **learn Godot and basic game design concepts**, covering:
@@ -34,9 +40,9 @@ This project was built to **learn Godot and basic game design concepts**, coveri
 
 ## 🚀 Future Improvements
 - [x] Add items for the player to pick up.
-- [ ] Add sound effects and background music.  
+- [x] Add sound effects and background music.  
 - [ ] Implement difficulty scaling.  
-- [ ] Add a death screen.  
+- [x] Add a death screen.  
 
 ## 📝 License
 This project is a **personal learning project** and is open-source. Feel free to use and modify it!  
