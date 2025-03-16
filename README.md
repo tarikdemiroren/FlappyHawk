@@ -1,5 +1,5 @@
 
-# Flappy Clone - Godot 4.3
+# Flappy Hawk - Godot 4.3
 
 A simple **Flappy Bird-inspired** game built with **Godot 4.3** as a **learning project** to explore game development, physics-based movement, and UI handling.
 
